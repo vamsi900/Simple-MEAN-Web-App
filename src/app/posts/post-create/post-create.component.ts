@@ -11,11 +11,12 @@ export class PostCreateComponent implements OnInit {
   constructor(public postsService: PostsService) { }
 
   onAddPost(form: NgForm){
-    if(form.invalid){
-      return;
-    }
-    this.postsService.addPost(form.value.title, form.value.content);
+    this.postsService.addPost(form.value).subscribe(data => {
+      return data;
+    });
+    console.log(form.value);
     form.resetForm();
+    // window.location.reload();
   }
 
   ngOnInit() {
